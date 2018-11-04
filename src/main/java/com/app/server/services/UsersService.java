@@ -1,6 +1,10 @@
 package com.app.server.services;
 
+import com.app.server.http.exceptions.APPBadRequestException;
+import com.app.server.http.exceptions.APPInternalServerException;
 import com.app.server.http.exceptions.APPNotFoundException;
+import com.app.server.http.exceptions.APPUnauthorizedException;
+import com.app.server.http.utils.APPCrypt;
 import com.app.server.http.utils.APPResponse;
 import com.app.server.models.Users;
 import com.app.server.models.WishList;
@@ -165,6 +169,18 @@ public class UsersService {
 
         return user;
     }
+    /*
+    void checkAuthentication(HttpHeaders headers,String id) throws Exception{
+        List<String> authHeaders = headers.getRequestHeader(HttpHeaders.AUTHORIZATION);
+        if (authHeaders == null)
+            throw new APPUnauthorizedException(70,"No Authorization Headers");
+        String token = authHeaders.get(0);
+        String clearToken = APPCrypt.decrypt(token);
+        if (id.compareTo(clearToken) != 0) {
+            throw new APPUnauthorizedException(71,"Invalid token. Please try getting a new token");
+        }
+    }
+*/
 
 
 
